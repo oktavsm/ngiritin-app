@@ -9,4 +9,8 @@
     <string name="email">Email</string>
     <string name="hello_nwelcome_to_ngiritin">Hello!\nWelcome to Ngiritin</string>
     <string name="or_sign_up_with">Or sign up with</string>
+    <string name="judul_contoh">Judul Contoh</string>
+    <string name="deskripsi_contoh_panjang">Deskripsi contoh panjang...</string>
+    <string name="ngiritin">NGIRITIN.</string>
+    <string name="skip">Skip</string>
 </resources>
