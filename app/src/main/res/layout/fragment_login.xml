@@ -169,8 +169,8 @@
 
                     <ImageView
                         android:id="@+id/ivFb"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_margin="8dp"
                         android:background="@drawable/bg_rounded_white"
                         android:padding="10dp"
@@ -178,21 +178,14 @@
 
                     <ImageView
                         android:id="@+id/ivGoogle"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_margin="8dp"
                         android:background="@drawable/bg_rounded_white"
                         android:padding="10dp"
                         android:src="@drawable/ic_google" />
 
-                    <ImageView
-                        android:id="@+id/ivApple"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/bg_rounded_white"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_apple" />
+
                 </LinearLayout>
 
                 <!-- Sign Up Link -->

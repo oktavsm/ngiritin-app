@@ -66,6 +66,5 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         // Pastikan view di dalam layoutSocial bisa diklik atau set click listener manual
         binding.ivGoogle.setOnClickListener { notAvailableAction() }
         binding.ivFb.setOnClickListener { notAvailableAction() }
-        binding.ivApple.setOnClickListener { notAvailableAction() }
     }
 }
