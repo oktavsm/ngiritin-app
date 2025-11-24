@@ -6,17 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivFullBackground"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_onboarding_0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvBrand"
@@ -26,94 +23,50 @@
         android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-black"
         android:letterSpacing="0.05"
-        android:text="@string/ngiritin"
+        android:text="NGIRITIN."
         android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomContainer"
+        android:id="@+id/bottomUI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:paddingHorizontal="24dp"
+        android:paddingBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/textCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_card_transparent"
-            android:padding="24dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="100dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/indicatorLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:orientation="horizontal"
             android:background="@drawable/bg_indicator_container"
             android:paddingHorizontal="6dp"
             android:paddingVertical="6dp"
             android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/textCard"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-
-            <View
-                android:layout_width="32dp"
-                android:layout_height="10dp"
-                android:background="@drawable/bg_indicator_active" />
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_indicator_inactive" />
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_indicator_inactive" />
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_indicator_inactive" />
-
+            <View android:layout_width="32dp" android:layout_height="10dp" android:background="@drawable/bg_indicator_active" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvSkip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/skip"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGetStarted"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/blue_button_getstarted"
+            android:text="Get Started"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnNext" />
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/indicatorLayout" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnNext"
@@ -124,11 +77,21 @@
             android:src="@drawable/ic_arrow_rightt"
             app:borderWidth="0dp"
             app:elevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/indicatorLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@android:color/white"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toBottomOf="@id/indicatorLayout"
+            app:tint="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Skip"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNext"
+            app:layout_constraintTop_toTopOf="@+id/btnNext" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

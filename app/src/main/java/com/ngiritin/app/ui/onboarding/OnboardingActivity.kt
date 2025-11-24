@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,92 +18,95 @@ import com.ngiritin.app.R
 class OnboardingActivity : AppCompatActivity() {
 
     // --- DATA ---
-    // 1. Data Teks (Judul & Deskripsi)
     private val onboardingData = listOf(
-        Pair("Stay in Control of Your Money", "Track your cash flow effortlessly and keep your finances organized without the stress."),
-        Pair("Know Where Your Money Goes", "Visualize your spending habits with intuitive charts and detailed reports."),
-        Pair("Save More for Your Dreams", "Set smart budgets and achieve your financial goals faster than ever."),
-        Pair("Secure and Private", "Your financial data is encrypted and safe. Only you have access to your wallet.")
-    )
-
-    // 2. Data Gambar Background (Sesuai urutan slide)
-    // NANTI GANTI: R.drawable.bg_onboarding_full dengan nama file gambar kamu yang beda-beda
-    private val backgroundImages = listOf(
-        R.drawable.bg_onboarding_0, // Background Slide 1
-        R.drawable.bg_onboarding_1, // Background Slide 2 (Ganti ini nanti, misal: R.drawable.bg_slide_2)
-        R.drawable.bg_onboarding_2, // Background Slide 3 (Ganti ini nanti)
-        R.drawable.bg_onboarding_3  // Background Slide 4 (Ganti ini nanti)
+        Triple("Stay in Control of Your Money", "Track your cash flow effortlessly and keep your finances organized without the stress", R.drawable.bg_onboarding_0),
+        Triple("Add Transactions in Seconds", "Use manual input or let AI fill it for you with voice or casual text \n‘super quick, super smooth’.", R.drawable.bg_onboarding_1),
+        Triple("Stay Within Your Budget", "Get notified when your spending hits certain limits so your budget stays safe and steady.", R.drawable.bg_onboarding_2),
+        Triple("See Where Your Money Goes", "Visual charts and insights help you understand your habits and make smarter financial moves.", R.drawable.bg_onboarding_3)
     )
 
     // --- VIEW ---
     private lateinit var indicatorLayout: LinearLayout
     private lateinit var viewPager: ViewPager2
-    private lateinit var ivFullBackground: ImageView // Ini si background yang mau kita ganti-ganti
+    private lateinit var btnNext: FloatingActionButton
+    private lateinit var btnGetStarted: Button
+    private lateinit var tvSkip: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
 
-        // 1. Inisialisasi View
         viewPager = findViewById(R.id.viewPagerText)
         indicatorLayout = findViewById(R.id.indicatorLayout)
-        ivFullBackground = findViewById(R.id.ivFullBackground) // Kenalan sama ImageView background
-        val btnNext = findViewById<FloatingActionButton>(R.id.btnNext)
-        val tvSkip = findViewById<TextView>(R.id.tvSkip)
+        btnNext = findViewById(R.id.btnNext)
+        btnGetStarted = findViewById(R.id.btnGetStarted)
+        tvSkip = findViewById(R.id.tvSkip)
 
-        // 2. Pasang Adapter
+        // 1. Setup Adapter
         val adapter = OnboardingAdapter(onboardingData)
         viewPager.adapter = adapter
 
-        // 3. Pasang Mata-mata (Listener)
+        // 2. Setup Indikator (INI YANG BARU)
+        // Kita bikin titik-titiknya dulu sesuai jumlah data
+        setupIndicators()
+
+        // 3. Set indikator awal biar yang pertama nyala
+        updateIndicators(0)
+
+        // 4. Listener Geser
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-
-                // A. Update Titik-titik Indikator
                 updateIndicators(position)
-
-                // B. Update Background sesuai posisi halaman
-                updateBackground(position)
+                toggleButtons(position)
             }
         })
 
-        // 4. Logika Tombol Next
         btnNext.setOnClickListener {
-            if (viewPager.currentItem < onboardingData.size - 1) {
-                viewPager.currentItem += 1
-            } else {
-                finishOnboarding()
+            if (viewPager.currentItem < onboardingData.size - 1) viewPager.currentItem += 1
+        }
+        btnGetStarted.setOnClickListener { finishOnboarding() }
+        tvSkip.setOnClickListener { finishOnboarding() }
+    }
+
+    // --- FUNGSI BARU: Bikin Titik Otomatis ---
+    private fun setupIndicators() {
+        indicatorLayout.removeAllViews() // Bersihin dulu isi XML (si dummy dibuang)
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        // Kasih jarak antar titik (Kiri 4dp, Kanan 4dp)
+        layoutParams.setMargins(dpToPx(4), 0, dpToPx(4), 0)
+
+        for (i in onboardingData.indices) {
+            val dot = View(this)
+            // Set tinggi default dot jadi 10dp
+            dot.layoutParams = LinearLayout.LayoutParams(dpToPx(10), dpToPx(10)).apply {
+                setMargins(dpToPx(4), 0, dpToPx(4), 0)
             }
-        }
+            // Pasang background default (abu-abu)
+            dot.background = getDrawable(R.drawable.bg_indicator_inactive)
 
-        // 5. Logika Tombol Skip
-        tvSkip.setOnClickListener {
-            finishOnboarding()
+            // Masukin ke layout
+            indicatorLayout.addView(dot)
         }
     }
 
-    // --- LOGIC FUNGSI ---
-
-    // Fungsi Ganti Background
-    private fun updateBackground(position: Int) {
-        // Ambil gambar dari list sesuai nomor halaman, terus pasang ke ImageView
-        ivFullBackground.setImageResource(backgroundImages[position])
-
-        // Tips Pro: Kalau mau ada efek fade in/out biar halus, butuh animasi tambahan.
-        // Tapi untuk sekarang, logic ganti langsung ini yang paling stabil & cepat.
-    }
-
-    // Fungsi Update Indikator (Kapsul Biru)
     private fun updateIndicators(position: Int) {
         for (i in 0 until indicatorLayout.childCount) {
             val view = indicatorLayout.getChildAt(i)
+
+            // Ambil layoutParams yang sudah ada (biar margin gak ilang)
             val params = view.layoutParams as LinearLayout.LayoutParams
 
             if (i == position) {
+                // Yang Aktif: Lebar 32dp, Warna Biru
                 params.width = dpToPx(32)
                 view.background = getDrawable(R.drawable.bg_indicator_active)
             } else {
+                // Yang Pasif: Lebar 10dp, Warna Abu
                 params.width = dpToPx(10)
                 view.background = getDrawable(R.drawable.bg_indicator_inactive)
             }
@@ -110,8 +114,20 @@ class OnboardingActivity : AppCompatActivity() {
         }
     }
 
+    private fun toggleButtons(position: Int) {
+        if (position == onboardingData.size - 1) {
+            btnNext.visibility = View.GONE
+            tvSkip.visibility = View.GONE
+            btnGetStarted.visibility = View.VISIBLE
+        } else {
+            btnNext.visibility = View.VISIBLE
+            tvSkip.visibility = View.VISIBLE
+            btnGetStarted.visibility = View.GONE
+        }
+    }
+
     private fun finishOnboarding() {
-        Toast.makeText(this, "Sip! Pindah ke Login.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Mantap! Masuk ke Login.", Toast.LENGTH_SHORT).show()
     }
 
     private fun dpToPx(dp: Int): Int {
@@ -120,23 +136,25 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     // --- ADAPTER ---
-    inner class OnboardingAdapter(private val data: List<Pair<String, String>>) :
+    inner class OnboardingAdapter(private val data: List<Triple<String, String, Int>>) :
         RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 
         inner class OnboardingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val tvTitle: TextView = view.findViewById(R.id.tvTitle)
             val tvDesc: TextView = view.findViewById(R.id.tvDesc)
+            val ivSlideImage: ImageView = view.findViewById(R.id.ivSlideImage)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_onboarding_text, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_onboarding_text, parent, false)
             return OnboardingViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
-            holder.tvTitle.text = data[position].first
-            holder.tvDesc.text = data[position].second
+            val item = data[position]
+            holder.tvTitle.text = item.first
+            holder.tvDesc.text = item.second
+            holder.ivSlideImage.setImageResource(item.third)
         }
 
         override fun getItemCount(): Int = data.size
