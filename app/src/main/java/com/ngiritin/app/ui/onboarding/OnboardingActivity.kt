@@ -1,5 +1,6 @@
 package com.ngiritin.app.ui.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.auth.AuthActivity
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -127,7 +129,12 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun finishOnboarding() {
-        Toast.makeText(this, "Mantap! Masuk ke Login.", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this@OnboardingActivity, AuthActivity::class.java)
+
+        startActivity(intent)
+
+        finish()
     }
 
     private fun dpToPx(dp: Int): Int {
