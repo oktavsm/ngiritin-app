@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.auth.AuthActivity
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -69,9 +70,16 @@ class OnboardingActivity : AppCompatActivity() {
 
     // --- FUNGSI TEST DRIVE (Cuma buat ngecek tombol jalan/nggak) ---
     private fun finishOnboarding() {
-        // Nanti kalau LoginActivity udah siap, ganti baris ini pake Intent.
-        // Sekarang kita pake Toast dulu biar aplikasi gak crash.
-        Toast.makeText(this, "Logika Berhasil! Harusnya pindah ke Login.", Toast.LENGTH_SHORT).show()
+        // 1. Tentukan tujuan: AuthActivity (Wadah Login/Register kita tadi)
+        val intent = android.content.Intent(this, AuthActivity::class.java)
+
+        // 2. Mulai Activity baru
+        startActivity(intent)
+
+        // 3. PENTING: Bunuh OnboardingActivity
+        // Supaya kalau user tekan tombol "Back" di halaman Login,
+        // dia KELUAR dari aplikasi, bukan balik lagi ke Onboarding.
+        finish()
     }
 
     // Fungsi Update Tampilan Indikator (Kapsul Biru)
