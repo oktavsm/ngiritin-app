@@ -13,4 +13,9 @@
     <string name="deskripsi_contoh_panjang">Deskripsi contoh panjang...</string>
     <string name="ngiritin">NGIRITIN.</string>
     <string name="skip">Skip</string>
+    <string name="back_to_login">Back to login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="or_login_with">Or login with</string>
 </resources>
