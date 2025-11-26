@@ -9,7 +9,7 @@ import com.ngiritin.app.R
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.settings_layout)
 
         // Logika Tombol Save di halaman Settings
         findViewById<Button>(R.id.btnSaveReminder).setOnClickListener {
