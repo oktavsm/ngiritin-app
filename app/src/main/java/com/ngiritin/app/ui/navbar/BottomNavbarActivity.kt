@@ -5,17 +5,72 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.navbar.pageDummy.AddTransactionDummyFragment
+import com.ngiritin.app.ui.navbar.pageDummy.DashboardDummyFragment
+import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
+import com.ngiritin.app.ui.navbar.pageDummy.HistoryDummyFragment
+import com.ngiritin.app.ui.navbar.pageDummy.ProfileDummyFragment
+import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
 class BottomNavbarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_bottom_navbar)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val bottomNavigation = findViewById<CurvedBottomNavigation>(R.id.bottomNavigation)
+        bottomNavigation.add(
+            CurvedBottomNavigation.Model(1, "", R.drawable.ic_dashboard1)
+        )
+        bottomNavigation.add(
+            CurvedBottomNavigation.Model(2, "", R.drawable.ic_history1)
+        )
+        bottomNavigation.add(
+            CurvedBottomNavigation.Model(3, "", R.drawable.ic_add1)
+        )
+        bottomNavigation.add(
+            CurvedBottomNavigation.Model(4, "", R.drawable.ic_foryou2)
+        )
+        bottomNavigation.add(
+            CurvedBottomNavigation.Model(5, "", R.drawable.ic_profile1)
+        )
+
+        bottomNavigation.setOnClickMenuListener {
+            when (it.id) {
+                1 -> {
+                    replaceFragment(DashboardDummyFragment())
+                }
+                2 -> {
+                    replaceFragment(HistoryDummyFragment())
+                }
+                3 -> {
+                    replaceFragment(AddTransactionDummyFragment())
+                }
+                4 -> {
+                    replaceFragment(ForYouDummyFragment())
+                }
+                5 -> {
+                    replaceFragment(ProfileDummyFragment())
+                }
+            }
+            }
+
+
+            //default
+            replaceFragment(DashboardDummyFragment())
+            bottomNavigation.show(1)
+
         }
+
+    private fun replaceFragment(fragment: Fragment){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
-}
+    }
+

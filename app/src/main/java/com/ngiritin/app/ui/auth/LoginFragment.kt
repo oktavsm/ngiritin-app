@@ -11,6 +11,7 @@ import com.ngiritin.app.R
 import android.content.Intent
 import android.widget.Toast
 import com.ngiritin.app.databinding.FragmentLoginBinding
+import com.ngiritin.app.ui.navbar.BottomNavbarActivity
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -32,7 +33,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             // Hardcode Demo Login
             if (email == "admin" && password == "admin") {
-                val intent = Intent(requireActivity(), HomeDummyActivity::class.java)
+                val intent = Intent(requireActivity(), BottomNavbarActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish() // Tutup AuthActivity agar tidak bisa di-back
             } else {
