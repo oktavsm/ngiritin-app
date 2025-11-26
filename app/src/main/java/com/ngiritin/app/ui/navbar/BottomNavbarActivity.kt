@@ -16,6 +16,9 @@ import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.HistoryDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.ProfileDummyFragment
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
+import com.ngiritin.app.ui.new_transaction.AddOptionBottomSheet
+import com.ngiritin.app.ui.new_transaction.AutomaticTransactionFragment
+import com.ngiritin.app.ui.new_transaction.ManualTransactionFragment
 
 class BottomNavbarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +52,17 @@ class BottomNavbarActivity : AppCompatActivity() {
                     replaceFragment(HistoryDummyFragment())
                 }
                 3 -> {
-                    replaceFragment(AddTransactionDummyFragment())
+                    val bottomSheet = AddOptionBottomSheet { selectedOption ->
+                        when (selectedOption) {
+                            "automatic" -> {
+                                loadTransactionFragment(AutomaticTransactionFragment())
+                            }
+                            "manual" -> {
+                                loadTransactionFragment(ManualTransactionFragment())
+                            }
+                        }
+                    }
+                    bottomSheet.show(supportFragmentManager, "AddOptionBottomSheet")
                 }
                 4 -> {
                     replaceFragment(ForYouDummyFragment())
@@ -58,14 +71,12 @@ class BottomNavbarActivity : AppCompatActivity() {
                     replaceFragment(ProfileDummyFragment())
                 }
             }
-            }
-
-
-            //default
-            replaceFragment(HomeFragment())
-            bottomNavigation.show(1)
-
         }
+
+        // default
+        replaceFragment(HomeFragment())
+        bottomNavigation.show(1)
+    }
 
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager
@@ -73,5 +84,11 @@ class BottomNavbarActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
-    }
 
+    private fun loadTransactionFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+}
