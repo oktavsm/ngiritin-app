@@ -37,5 +37,5 @@ class EditTransactionBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
+    override fun getTheme(): Int = R.style.CustomBottomSheetDialog
 }

@@ -106,6 +106,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         npYear.value = 2025
     }
     // Pastikan theme ini tetap ada biar rounded corner-nya gak kotak putih
-    override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
+    override fun getTheme(): Int = R.style.CustomBottomSheetDialog
 
 }
