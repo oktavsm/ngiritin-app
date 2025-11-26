@@ -15,11 +15,11 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.settings_layout)
 
         setupManageCategories()
+        setupManageWallets() // <-- INI FITUR BARU KITA
         setupOtherButtons()
     }
 
     private fun setupManageCategories() {
-        // Kenalan sama View-nya
         val btnHeader = findViewById<LinearLayout>(R.id.btnManageCategories)
         val layoutExpanded = findViewById<LinearLayout>(R.id.layoutCategoriesExpanded)
         val ivArrow = findViewById<ImageView>(R.id.ivArrowCategories)
@@ -27,31 +27,60 @@ class SettingsActivity : AppCompatActivity() {
         val btnCancel = findViewById<Button>(R.id.btnCancelCategory)
         val btnSave = findViewById<Button>(R.id.btnSaveCategory)
 
-        // 1. Logika Buka Tutup (Toggle)
         btnHeader.setOnClickListener {
-            if (layoutExpanded.visibility == View.VISIBLE) {
-                // Kalau lagi kebuka -> Tutup
-                layoutExpanded.visibility = View.GONE
-                ivArrow.rotation = 0f // Balikin panah ke kanan
-            } else {
-                // Kalau lagi ketutup -> Buka
-                layoutExpanded.visibility = View.VISIBLE
-                ivArrow.rotation = 90f // Puter panah ke bawah
-            }
+            toggleVisibility(layoutExpanded, ivArrow)
         }
 
-        // 2. Tombol Cancel -> Tutup aja
         btnCancel.setOnClickListener {
-            layoutExpanded.visibility = View.GONE
-            ivArrow.rotation = 0f
+            closeSection(layoutExpanded, ivArrow)
         }
 
-        // 3. Tombol Save -> Pura-pura save & Tutup
         btnSave.setOnClickListener {
             Toast.makeText(this, "Categories Updated!", Toast.LENGTH_SHORT).show()
-            layoutExpanded.visibility = View.GONE
-            ivArrow.rotation = 0f
+            closeSection(layoutExpanded, ivArrow)
         }
+    }
+
+    private fun setupManageWallets() {
+        // Kenalan dulu sama View barunya
+        val btnHeader = findViewById<LinearLayout>(R.id.btnManageWallets)
+        val layoutExpanded = findViewById<LinearLayout>(R.id.layoutWalletsExpanded)
+        val ivArrow = findViewById<ImageView>(R.id.ivArrowWallets)
+
+        val btnCancel = findViewById<Button>(R.id.btnCancelWallet)
+        val btnSave = findViewById<Button>(R.id.btnSaveWallet)
+
+        // 1. Logika Buka Tutup
+        btnHeader.setOnClickListener {
+            toggleVisibility(layoutExpanded, ivArrow)
+        }
+
+        // 2. Tombol Cancel
+        btnCancel.setOnClickListener {
+            closeSection(layoutExpanded, ivArrow)
+        }
+
+        // 3. Tombol Save
+        btnSave.setOnClickListener {
+            Toast.makeText(this, "Wallets Updated!", Toast.LENGTH_SHORT).show()
+            closeSection(layoutExpanded, ivArrow)
+        }
+    }
+
+    // Fungsi helper biar gak nulis kode ulang-ulang (DRY Principle)
+    private fun toggleVisibility(layout: View, arrow: ImageView) {
+        if (layout.visibility == View.VISIBLE) {
+            layout.visibility = View.GONE
+            arrow.rotation = 0f
+        } else {
+            layout.visibility = View.VISIBLE
+            arrow.rotation = 90f
+        }
+    }
+
+    private fun closeSection(layout: View, arrow: ImageView) {
+        layout.visibility = View.GONE
+        arrow.rotation = 0f
     }
 
     private fun setupOtherButtons() {
