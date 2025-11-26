@@ -1,5 +1,6 @@
 package com.ngiritin.app.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.ngiritin.app.R
 
 import android.widget.Toast
 import com.ngiritin.app.databinding.FragmentRegisterBinding
+import com.ngiritin.app.ui.main.MainActivity
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
@@ -44,7 +46,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
             // Simulasi Sukses
             Toast.makeText(requireContext(), "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show()
-            parentFragmentManager.popBackStack() // Kembali ke halaman Login
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         // 3. Sosmed
