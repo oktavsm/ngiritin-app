@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.history.HistoryFragment
 import com.ngiritin.app.ui.home.HomeFragment
 import com.ngiritin.app.ui.navbar.pageDummy.AddTransactionDummyFragment
 
 import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
-import com.ngiritin.app.ui.navbar.pageDummy.HistoryDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.ProfileDummyFragment
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 
@@ -46,7 +46,7 @@ class BottomNavbarActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment())
                 }
                 2 -> {
-                    replaceFragment(HistoryDummyFragment())
+                    replaceFragment(HistoryFragment())
                 }
                 3 -> {
                     replaceFragment(AddTransactionDummyFragment())
