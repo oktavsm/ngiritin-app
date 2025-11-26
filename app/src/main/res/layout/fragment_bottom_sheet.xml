@@ -3,16 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF78"
-    tools:context=".ui.navbar.pageDummy.HistoryDummyFragment">
+    tools:context=".ui.history.onclick.BottomSheetFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="32sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="History" />
+        android:text="@string/hello_blank_fragment" />
+
 </FrameLayout>
