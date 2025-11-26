@@ -25,7 +25,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.btnLogin.setOnClickListener {
             val email = binding.tilEmail.editText?.text.toString().trim()
             val password = binding.tilPassword.editText?.text.toString().trim()
-
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -62,11 +61,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.tvForgotPassword.setOnClickListener { notAvailableAction() }
+        binding.btnGoogle.setOnClickListener { notAvailableAction() }
 
-        // Loop listener untuk icon sosmed di dalam layoutSocial
-        // Pastikan view di dalam layoutSocial bisa diklik atau set click listener manual
-        binding.ivGoogle.setOnClickListener { notAvailableAction() }
-        binding.ivFb.setOnClickListener { notAvailableAction() }
-        binding.ivApple.setOnClickListener { notAvailableAction() }
     }
 }
