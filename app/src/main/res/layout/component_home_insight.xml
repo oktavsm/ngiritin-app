@@ -61,6 +61,30 @@
                         app:layout_constraintTop_toTopOf="@id/iconTarget"
                         app:layout_constraintBottom_toBottomOf="@id/iconTarget" />
 
+                    <LinearLayout
+                        android:id="@+id/btnSeeMoreInsight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/iconTarget"
+                        app:layout_constraintBottom_toBottomOf="@id/iconTarget">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/see_more"
+                            android:textColor="@color/blue_primary"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:contentDescription="@string/see_more"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/blue_primary" />
+                    </LinearLayout>
+
                     <!-- subtitle section -->
                     <TextView
                         android:id="@+id/tvInsightSubtitle"
