@@ -18,9 +18,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures {
-        viewBinding = true
-    }
 
     buildTypes {
         release {
@@ -38,11 +35,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
-        viewBinding = true
-        dataBinding = true
-    }
-
 }
 
 dependencies {
@@ -51,12 +43,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.2.0")
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-
 }
