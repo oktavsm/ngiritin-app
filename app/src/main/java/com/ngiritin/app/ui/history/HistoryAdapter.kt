@@ -3,12 +3,17 @@ package com.ngiritin.app.ui.history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ngiritin.app.R
 import com.ngiritin.app.model.HistoryItem
+import com.ngiritin.app.model.Transaction
 
-class HistoryAdapter(private val items: List<HistoryItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HistoryAdapter(
+    private val items: List<HistoryItem>,
+    private val onEditClick: (Transaction) -> Unit // Tambahan Callback
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_HEADER = 0
@@ -56,6 +61,7 @@ class HistoryAdapter(private val items: List<HistoryItem>) : RecyclerView.Adapte
         private val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
         private val tvNote: TextView = itemView.findViewById(R.id.tvNote)
         private val tvTime: TextView = itemView.findViewById(R.id.tvTime)
+        private val btnEdit: ImageView = itemView.findViewById(R.id.btnEdit)
 
         fun bind(item: HistoryItem.Content) {
             val data = item.transaction
@@ -64,6 +70,10 @@ class HistoryAdapter(private val items: List<HistoryItem>) : RecyclerView.Adapte
             tvAmount.text = "Amount : ${data.amount}"
             tvNote.text = data.note
             tvTime.text = data.time
+
+            btnEdit.setOnClickListener {
+                onEditClick(item.transaction) // Panggil callback, kirim data transaksinya
+            }
         }
     }
 }

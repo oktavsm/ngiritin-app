@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.history.onclick.EditTransactionBottomSheet
+import com.ngiritin.app.ui.history.onclick.FilterBottomSheet
+
 class HistoryFragment : Fragment() {
 
     private lateinit var viewModel: HistoryViewModel
@@ -28,9 +32,33 @@ class HistoryFragment : Fragment() {
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(context)
 
+        // Di dalam observe ViewModel
         viewModel.transactionList.observe(viewLifecycleOwner) { items ->
-            val adapter = HistoryAdapter(items)
+
+            // Masukkan lambda function di parameter kedua
+            val adapter = HistoryAdapter(items) { transaction ->
+                // KODE YANG DIJALANKAN SAAT TOMBOL EDIT DI KLIK:
+                val editSheet = EditTransactionBottomSheet()
+
+                // (Opsional) Kirim data transaksi ke sheet biar form-nya keisi
+                 val bundle = Bundle()
+                 bundle.putString("TITLE", transaction.title)
+                 editSheet.arguments = bundle
+
+                editSheet.show(parentFragmentManager, "EditTransaction")
+            }
+
             rvTransactions.adapter = adapter
+        }
+
+        // Di dalam onViewCreated HistoryFragment
+        val btnFilter = view.findViewById<ImageView>(R.id.ivFilter)
+
+        btnFilter.setOnClickListener {
+            val filterBottomSheet = FilterBottomSheet()
+
+            // Tampilkan! "parentFragmentManager" adalah kuncinya
+            filterBottomSheet.show(parentFragmentManager, "FilterBottomSheet")
         }
     }
 }
