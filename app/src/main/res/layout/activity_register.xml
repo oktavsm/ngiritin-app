@@ -36,7 +36,7 @@
             android:textColor="@color/text_dark"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:drawableStartCompat="@drawable/ic_arrow_back"
+            app:drawableStartCompat="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -203,20 +203,23 @@
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/bg_rounded_white"
+                android:padding="8dp"
                 android:src="@drawable/ic_fb" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:background="@color/white"
+                android:background="@drawable/bg_rounded_white"
+                android:padding="8dp"
                 android:src="@drawable/ic_google" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:background="@color/white"
+                android:background="@drawable/bg_rounded_white"
+                android:padding="8dp"
                 android:src="@drawable/ic_apple" />
 
         </LinearLayout>

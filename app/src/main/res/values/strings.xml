@@ -1,6 +1,33 @@
 <resources>
     <string name="app_name">Ngiritin App</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- HOME TEXT -->
+    <string name="category">Category :</string>
+    <string name="amount">Amount :</string>
+    <string name="note">Note :</string>
+    <string name="today_s_transactions">Today\'s Transactions</string>
+    <string name="see_more">See More</string>
+    <string name="location_icon">location_icon</string>
+    <string name="regional_insight">Regional Insight</string>
+    <string name="average_spending_in_malang_area">Average spending in Malang area</string>
+    <string name="monthly_average">Monthly average</string>
+    <string name="idr_2_6m_idr_3_2m">IDR 2.6M - IDR 3.2M</string>
+    <string name="you_re_spending_below_average">You\'re spending below average! 🎉</string>
+    <string name="it_s_great_that_this_period_you_managed_to_save_20">It\'s great that this period you managed to save 20%</string>
+    <string name="lightbulb_icon">lightbulb_icon</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="total_balance">Total balance</string>
+    <string name="idr_2_540_000">IDR 2,540,000</string>
+    <string name="info_icon">info_icon</string>
+    <string name="visibility_icon">visibility_icon</string>
+    <string name="arrow_icon">arrow_icon</string>
+    <string name="income">Income</string>
+    <string name="idr_5_000_000">IDR 5,000,000</string>
+    <string name="expense">Expense</string>
+    <string name="idr_2_550_000">IDR 2,550,000</string>
+
+    <!-- AUTH & ONBOARDING TEXT -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
     <string name="login">Login</string>
@@ -9,4 +36,11 @@
     <string name="email">Email</string>
     <string name="hello_nwelcome_to_ngiritin">Hello!\nWelcome to Ngiritin</string>
     <string name="or_sign_up_with">Or sign up with</string>
+    <string name="judul_contoh">Judul Contoh</string>
+    <string name="deskripsi_contoh_panjang">Deskripsi contoh panjang...</string>
+    <string name="ngiritin">Ngiritin</string>
+    <string name="skip">Skip</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

@@ -12,19 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NgiritinApp">
         <activity
+            android:name=".ui.navbar.BottomNavbarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.HomeDummyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.onboarding.OnboardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.auth.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.auth.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.auth.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>
