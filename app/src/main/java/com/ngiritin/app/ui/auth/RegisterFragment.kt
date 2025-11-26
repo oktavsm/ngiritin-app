@@ -55,8 +55,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         val notAvailableAction = {
             Toast.makeText(requireContext(), "Fitur ini belum tersedia di versi Demo", Toast.LENGTH_SHORT).show()
         }
-//        binding.ivGoogle.setOnClickListener { notAvailableAction() }
-//        binding.ivFb.setOnClickListener { notAvailableAction() }
-//        binding.ivApple.setOnClickListener { notAvailableAction() }
+        binding.btnGoogle.setOnClickListener { notAvailableAction() }
     }
 }

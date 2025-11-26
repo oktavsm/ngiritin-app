@@ -11,7 +11,7 @@ import com.ngiritin.app.R
 import android.content.Intent
 import android.widget.Toast
 import com.ngiritin.app.databinding.FragmentLoginBinding
-import com.ngiritin.app.ui.main.MainActivity
+import com.ngiritin.app.ui.navbar.BottomNavbarActivity
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -25,7 +25,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.btnLogin.setOnClickListener {
             val email = binding.tilEmail.editText?.text.toString().trim()
             val password = binding.tilPassword.editText?.text.toString().trim()
-
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -33,7 +32,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             // Hardcode Demo Login
             if (email == "admin" && password == "admin") {
-                val intent = Intent(requireActivity(), MainActivity::class.java)
+                val intent = Intent(requireActivity(), BottomNavbarActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish() // Tutup AuthActivity agar tidak bisa di-back
             } else {
@@ -62,5 +61,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.tvForgotPassword.setOnClickListener { notAvailableAction() }
+        binding.btnGoogle.setOnClickListener { notAvailableAction() }
+
     }
 }
