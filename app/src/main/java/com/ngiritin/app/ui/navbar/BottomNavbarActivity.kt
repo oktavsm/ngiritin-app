@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
 import com.ngiritin.app.ui.home.HomeFragment
 import com.ngiritin.app.ui.navbar.pageDummy.AddTransactionDummyFragment
-import com.ngiritin.app.ui.navbar.pageDummy.DashboardDummyFragment
+
 import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.HistoryDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.ProfileDummyFragment
