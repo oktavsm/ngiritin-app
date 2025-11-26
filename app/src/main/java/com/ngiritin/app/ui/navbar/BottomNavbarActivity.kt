@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.home.HomeFragment
 import com.ngiritin.app.ui.navbar.pageDummy.AddTransactionDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.DashboardDummyFragment
 import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
@@ -42,7 +43,7 @@ class BottomNavbarActivity : AppCompatActivity() {
         bottomNavigation.setOnClickMenuListener {
             when (it.id) {
                 1 -> {
-                    replaceFragment(DashboardDummyFragment())
+                    replaceFragment(HomeFragment())
                 }
                 2 -> {
                     replaceFragment(HistoryDummyFragment())
@@ -61,7 +62,7 @@ class BottomNavbarActivity : AppCompatActivity() {
 
 
             //default
-            replaceFragment(DashboardDummyFragment())
+            replaceFragment(HomeFragment())
             bottomNavigation.show(1)
 
         }
