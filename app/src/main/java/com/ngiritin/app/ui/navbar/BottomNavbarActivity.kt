@@ -11,6 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
 import com.ngiritin.app.ui.history.HistoryFragment
 import com.ngiritin.app.ui.home.HomeFragment
+import com.ngiritin.app.ui.main.profile.ProfileFragment
 import com.ngiritin.app.ui.navbar.pageDummy.AddTransactionDummyFragment
 
 import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
@@ -68,7 +69,7 @@ class BottomNavbarActivity : AppCompatActivity() {
                     replaceFragment(ForYouDummyFragment())
                 }
                 5 -> {
-                    replaceFragment(ProfileDummyFragment())
+                    replaceFragment(ProfileFragment())
                 }
             }
         }

@@ -15,9 +15,6 @@
             android:name=".ui.navbar.BottomNavbarActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.auth.HomeDummyActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false" />
         <activity
