@@ -15,9 +15,6 @@
             android:name=".ui.navbar.BottomNavbarActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.auth.HomeDummyActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false" />
         <activity
@@ -31,7 +28,7 @@
         </activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
