@@ -45,7 +45,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_edit_circle"
+                    android:src="@drawable/ic_settings_edit"
                     app:tint="#333333"
                     android:layout_marginEnd="12dp"/>
 
@@ -172,7 +172,7 @@
                         android:text="Cancel"
                         android:textAllCaps="false"
                         android:textColor="#007AFF"
-                        android:background="@drawable/bg_btn_cancel_outline"
+                        android:background="@drawable/bg_btn_outline_blue"
                         android:layout_marginEnd="8dp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -434,7 +434,7 @@
                         android:text="Cancel"
                         android:textAllCaps="false"
                         android:textColor="#007AFF"
-                        android:background="@drawable/bg_btn_cancel_outline"
+                        android:background="@drawable/bg_btn_outline_blue"
                         android:layout_marginEnd="8dp"/>
 
                     <androidx.appcompat.widget.AppCompatButton

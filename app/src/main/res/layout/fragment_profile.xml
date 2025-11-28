@@ -48,16 +48,18 @@
                     tools:srcCompat="@tools:sample/avatars"/>
             </androidx.cardview.widget.CardView>
 
-            <ImageView
+            <ImageButton
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/ic_blue_editg"
-                android:elevation="2dp"
+                android:background="@drawable/bg_camera_circle_gray"
+                android:src="@drawable/ic_camera"
+                android:padding="5dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="@id/cvProfileContainer"
                 app:layout_constraintEnd_toEndOf="@id/cvProfileContainer"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- ITEM 1: NAME -->
@@ -72,7 +74,7 @@
                 android:id="@+id/icUser"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_profile1"
+                android:src="@drawable/ic_profile"
                 app:tint="#007AFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -128,7 +130,7 @@
                 android:id="@+id/icEmail"
                 android:layout_width="22dp"
                 android:layout_height="19dp"
-                android:src="@drawable/ic_email_blue"
+                android:src="@drawable/ic_email"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +142,6 @@
                 android:orientation="vertical"
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toEndOf="@id/icEmail"
-                app:layout_constraintEnd_toStartOf="@id/tvChangeEmail"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -161,16 +162,6 @@
                     android:textStyle="bold"
                     android:textColor="#000000"/>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvChangeEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change"
-                android:textColor="#333333"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -197,8 +188,8 @@
                     android:id="@+id/icLock"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_lock_blue"
-                    app:tint="#007AFF"
+                    android:src="@drawable/ic_lock"
+                    app:tint="#006FFD"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -223,7 +214,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="................"
+                        android:text=". . . . . . ."
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"/>
@@ -278,7 +269,7 @@
                     android:background="@drawable/bg_input_white"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_lock_blue"
+                    android:drawableStart="@drawable/ic_lock"
                     android:drawablePadding="12dp"
                     android:drawableTint="#808080"
                     android:hint="............"
@@ -302,7 +293,7 @@
                     android:background="@drawable/bg_input_white"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_lock_blue"
+                    android:drawableStart="@drawable/ic_key"
                     android:drawablePadding="12dp"
                     android:drawableTint="#808080"
                     android:hint="New password"
@@ -326,7 +317,7 @@
                     android:background="@drawable/bg_input_white"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_lock_blue"
+                    android:drawableStart="@drawable/ic_key"
                     android:drawablePadding="12dp"
                     android:drawableTint="#808080"
                     android:hint="Confirm new password"
@@ -380,7 +371,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_settings"
+                android:src="@drawable/ic_setting"
                 app:tint="#007AFF"
                 android:layout_marginEnd="8dp"/>
 
@@ -397,6 +388,7 @@
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_logout"
             android:gravity="center"
             android:padding="16dp"
             android:clickable="true"
