@@ -9,17 +9,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ngiritin.app.R
 import com.ngiritin.app.ui.auth.AuthActivity
+import com.ngiritin.app.ui.auth.AuthViewModel
+import com.ngiritin.app.ui.navbar.BottomNavbarActivity
 
 class OnboardingActivity : AppCompatActivity() {
-
-    // --- DATA ---
     private val onboardingData = listOf(
         Triple("Stay in Control of Your Money", "Track your cash flow effortlessly and keep your finances organized without the stress", R.drawable.bg_onboarding_0),
         Triple("Add Transactions in Seconds", "Use manual input or let AI fill it for you with voice or casual text \n‘super quick, super smooth’.", R.drawable.bg_onboarding_1),
@@ -27,15 +27,25 @@ class OnboardingActivity : AppCompatActivity() {
         Triple("See Where Your Money Goes", "Visual charts and insights help you understand your habits and make smarter financial moves.", R.drawable.bg_onboarding_3)
     )
 
-    // --- VIEW ---
     private lateinit var indicatorLayout: LinearLayout
     private lateinit var viewPager: ViewPager2
     private lateinit var btnNext: FloatingActionButton
     private lateinit var btnGetStarted: Button
     private lateinit var tvSkip: TextView
 
+    private val authViewModel: AuthViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (authViewModel.checkCurrentUser() != null) {
+            val intent = Intent(this, BottomNavbarActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_onboarding)
 
         viewPager = findViewById(R.id.viewPagerText)
@@ -44,18 +54,12 @@ class OnboardingActivity : AppCompatActivity() {
         btnGetStarted = findViewById(R.id.btnGetStarted)
         tvSkip = findViewById(R.id.tvSkip)
 
-        // 1. Setup Adapter
         val adapter = OnboardingAdapter(onboardingData)
         viewPager.adapter = adapter
 
-        // 2. Setup Indikator (INI YANG BARU)
-        // Kita bikin titik-titiknya dulu sesuai jumlah data
         setupIndicators()
-
-        // 3. Set indikator awal biar yang pertama nyala
         updateIndicators(0)
 
-        // 4. Listener Geser
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -71,27 +75,21 @@ class OnboardingActivity : AppCompatActivity() {
         tvSkip.setOnClickListener { finishOnboarding() }
     }
 
-    // --- FUNGSI BARU: Bikin Titik Otomatis ---
     private fun setupIndicators() {
-        indicatorLayout.removeAllViews() // Bersihin dulu isi XML (si dummy dibuang)
+        indicatorLayout.removeAllViews()
 
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        // Kasih jarak antar titik (Kiri 4dp, Kanan 4dp)
         layoutParams.setMargins(dpToPx(4), 0, dpToPx(4), 0)
 
         for (i in onboardingData.indices) {
             val dot = View(this)
-            // Set tinggi default dot jadi 10dp
             dot.layoutParams = LinearLayout.LayoutParams(dpToPx(10), dpToPx(10)).apply {
                 setMargins(dpToPx(4), 0, dpToPx(4), 0)
             }
-            // Pasang background default (abu-abu)
             dot.background = getDrawable(R.drawable.bg_indicator_inactive)
-
-            // Masukin ke layout
             indicatorLayout.addView(dot)
         }
     }
@@ -99,16 +97,12 @@ class OnboardingActivity : AppCompatActivity() {
     private fun updateIndicators(position: Int) {
         for (i in 0 until indicatorLayout.childCount) {
             val view = indicatorLayout.getChildAt(i)
-
-            // Ambil layoutParams yang sudah ada (biar margin gak ilang)
             val params = view.layoutParams as LinearLayout.LayoutParams
 
             if (i == position) {
-                // Yang Aktif: Lebar 32dp, Warna Biru
                 params.width = dpToPx(32)
                 view.background = getDrawable(R.drawable.bg_indicator_active)
             } else {
-                // Yang Pasif: Lebar 10dp, Warna Abu
                 params.width = dpToPx(10)
                 view.background = getDrawable(R.drawable.bg_indicator_inactive)
             }
@@ -129,11 +123,8 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun finishOnboarding() {
-
         val intent = Intent(this@OnboardingActivity, AuthActivity::class.java)
-
         startActivity(intent)
-
         finish()
     }
 
@@ -142,7 +133,6 @@ class OnboardingActivity : AppCompatActivity() {
         return (dp * density).toInt()
     }
 
-    // --- ADAPTER ---
     inner class OnboardingAdapter(private val data: List<Triple<String, String, Int>>) :
         RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder>() {
 

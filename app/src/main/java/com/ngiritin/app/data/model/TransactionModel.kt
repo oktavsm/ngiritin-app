@@ -1,4 +1,4 @@
-package com.ngiritin.app.model
+package com.ngiritin.app.data.model
 
 // Simpan di file TransactionModel.kt
 

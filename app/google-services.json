@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "612614237306",
+    "project_id": "ngiritin-app",
+    "storage_bucket": "ngiritin-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612614237306:android:576a8618e7808221675fc3",
+        "android_client_info": {
+          "package_name": "com.ngiritin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612614237306-2svlb2ldtt69srphd1ua6ldg12bd8gak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ngiritin.app",
+            "certificate_hash": "354f95cf67917f7e94150f8b4f78862a648654de"
+          }
+        },
+        {
+          "client_id": "612614237306-do84unhgo81gt4kplhlgh9lbkkbn5mk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF9fFb17XHEh4RTlQ3FJ6LqssXHLafg9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612614237306-do84unhgo81gt4kplhlgh9lbkkbn5mk2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

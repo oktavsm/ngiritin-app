@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ngiritin.app.R
-import com.ngiritin.app.model.HistoryItem
-import com.ngiritin.app.model.Transaction
+import com.ngiritin.app.data.model.HistoryItem
+import com.ngiritin.app.data.model.Transaction
 
 class HistoryAdapter(
     private val items: List<HistoryItem>,
