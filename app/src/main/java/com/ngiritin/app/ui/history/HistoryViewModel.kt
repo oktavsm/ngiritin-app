@@ -3,8 +3,8 @@ package com.ngiritin.app.ui.history
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ngiritin.app.model.HistoryItem
-import com.ngiritin.app.model.Transaction
+import com.ngiritin.app.data.model.HistoryItem
+import com.ngiritin.app.data.model.Transaction
 
 class HistoryViewModel : ViewModel() {
 

@@ -43,4 +43,6 @@
     <string name="continue_with_google">Continue with Google</string>
     <string name="or_login_with">Or login with</string>
     <string name="sign_up">Sign Up</string>
+
+    <string name="default_web_client_id">612614237306-do84unhgo81gt4kplhlgh9lbkkbn5mk2.apps.googleusercontent.com</string>
 </resources>
