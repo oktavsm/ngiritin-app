@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ngiritin.app.R
 
-// Menerima callback function (onOptionSelected)
 class AddOptionBottomSheet(
     private val onOptionSelected: (String) -> Unit
 ) : BottomSheetDialogFragment() {
@@ -23,19 +22,16 @@ class AddOptionBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Handle Klik Automatic
         view.findViewById<LinearLayout>(R.id.btnAutomatic).setOnClickListener {
             onOptionSelected("automatic")
-            dismiss() // Tutup popup
+            dismiss()
         }
 
-        // Handle Klik Manual
         view.findViewById<LinearLayout>(R.id.btnManual).setOnClickListener {
             onOptionSelected("manual")
-            dismiss() // Tutup popup
+            dismiss()
         }
     }
 
-    // Agar background transparan dan rounded corner terlihat
     override fun getTheme(): Int = R.style.CustomBottomSheetDialog
 }
