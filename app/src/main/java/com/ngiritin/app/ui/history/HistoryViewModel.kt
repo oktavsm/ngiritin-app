@@ -18,26 +18,55 @@ class HistoryViewModel : ViewModel() {
     private fun loadDummyData() {
         val items = mutableListOf<HistoryItem>()
 
-        // TODAY
         items.add(HistoryItem.Header("Today"))
-        items.add(HistoryItem.Content(
-            Transaction(
-                "Coffee at Starbucks",
-                "Food",
-                "IDR 120,000",
-                "Note : Morning coffee before class",
-                "13.00 AM"
+        items.add(
+            HistoryItem.Content(
+                Transaction(
+                    "Coffee at Starbucks",
+                    "Food",
+                    "IDR 120,000",
+                    "Note : Morning coffee before class",
+                    "13.00 AM"
+                )
             )
-        ))
-        items.add(HistoryItem.Content(Transaction("Coffee at Starbucks", "Food", "IDR 120,000", "Note : Morning coffee before class", "13.00 AM")))
+        )
+        items.add(
+            HistoryItem.Content(
+                Transaction(
+                    "Coffee at Starbucks",
+                    "Food",
+                    "IDR 120,000",
+                    "Note : Morning coffee before class",
+                    "13.00 AM"
+                )
+            )
+        )
 
-        // YESTERDAY
         items.add(HistoryItem.Header("Yesterday"))
-        items.add(HistoryItem.Content(Transaction("Coffee at Starbucks", "Food", "IDR 120,000", "Note : Morning coffee before class", "13.00 AM")))
+        items.add(
+            HistoryItem.Content(
+                Transaction(
+                    "Coffee at Starbucks",
+                    "Food",
+                    "IDR 120,000",
+                    "Note : Morning coffee before class",
+                    "13.00 AM"
+                )
+            )
+        )
 
-        // DATE
         items.add(HistoryItem.Header("October 25, 2025"))
-        items.add(HistoryItem.Content(Transaction("Coffee at Starbucks", "Food", "IDR 120,000", "Note : Morning coffee before class", "13.00 AM")))
+        items.add(
+            HistoryItem.Content(
+                Transaction(
+                    "Coffee at Starbucks",
+                    "Food",
+                    "IDR 120,000",
+                    "Note : Morning coffee before class",
+                    "13.00 AM"
+                )
+            )
+        )
 
         _transactionList.value = items
     }

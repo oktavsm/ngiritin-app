@@ -12,9 +12,8 @@ import com.ngiritin.app.data.model.Transaction
 
 class HistoryAdapter(
     private val items: List<HistoryItem>,
-    private val onEditClick: (Transaction) -> Unit // Tambahan Callback
+    private val onEditClick: (Transaction) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     companion object {
         const val TYPE_HEADER = 0
         const val TYPE_CONTENT = 1
@@ -29,10 +28,12 @@ class HistoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == TYPE_HEADER) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaction_header, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_transaction_header, parent, false)
             HeaderViewHolder(view)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transaction_card, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_transaction_card, parent, false)
             ContentViewHolder(view)
         }
     }
@@ -46,16 +47,15 @@ class HistoryAdapter(
 
     override fun getItemCount() = items.size
 
-    // ViewHolder Classes
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvDate: TextView = itemView.findViewById(R.id.tvHeaderDate)
+
         fun bind(item: HistoryItem.Header) {
             tvDate.text = item.date
         }
     }
 
     inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Deklarasi view...
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
         private val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
@@ -72,7 +72,7 @@ class HistoryAdapter(
             tvTime.text = data.time
 
             btnEdit.setOnClickListener {
-                onEditClick(item.transaction) // Panggil callback, kirim data transaksinya
+                onEditClick(item.transaction)
             }
         }
     }
