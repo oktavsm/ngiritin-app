@@ -27,6 +27,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
+        // hardcode for admin admin auth
 
         setupGoogleSignIn()
         setupListeners()
@@ -67,6 +68,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Email and Password cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // if admin admin
+            if (email == "admin" && password == "admin") {
+                navigateToHome()
                 return@setOnClickListener
             }
             viewModel.login(email, password)

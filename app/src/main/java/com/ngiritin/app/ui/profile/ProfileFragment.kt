@@ -1,5 +1,6 @@
 package com.ngiritin.app.ui.profile // <-- Pastiin ini sesuai nama package lu sendiri
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.ngiritin.app.R
+import com.ngiritin.app.ui.auth.AuthActivity
+import com.ngiritin.app.ui.settings.SettingsFragment
 
 class ProfileFragment : Fragment() {
 
@@ -32,7 +35,7 @@ class ProfileFragment : Fragment() {
 
         // Panggil fungsi setup di sini
         setupPasswordExpandable(view)
-        setupLogoutButton(view)
+        setupNavigation(view)
     }
 
     private fun setupPasswordExpandable(view: View) {
@@ -95,6 +98,44 @@ class ProfileFragment : Fragment() {
         btnLogout.setOnClickListener {
             Toast.makeText(requireContext(), "Logout diklik!", Toast.LENGTH_SHORT).show()
             // Nanti di sini logika logout benerannya
+
+        }
+    }
+
+    private fun setupNavigation(view: View) {
+        val btnSettings = view.findViewById<LinearLayout>(R.id.btnSettings)
+        val btnLogout = view.findViewById<LinearLayout>(R.id.btnLogout)
+
+        // 1. LOGIC KE SETTINGS (Fragment Transaction)
+        btnSettings.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    android.R.anim.fade_in,  // Animasi Masuk
+                    android.R.anim.fade_out, // Animasi Keluar
+                    android.R.anim.fade_in,  // Animasi Back Masuk
+                    android.R.anim.fade_out  // Animasi Back Keluar
+                )
+                // GANTI R.id.fragmentContainer SESUAI ID DI MAIN ACTIVITY KAMU
+                // Ini adalah ID dari FrameLayout tempat fragment dimuat
+                .replace(R.id.fragmentContainer, SettingsFragment())
+                .addToBackStack(null) // PENTING: Biar pas di-Back balik ke Profile
+                .commit()
+        }
+
+        // 2. LOGIC LOGOUT (Activity Intent)
+        btnLogout.setOnClickListener {
+            // TODO: Hapus data user/session di SharedPreferences di sini
+            // val sharedPref = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            // sharedPref.edit().clear().apply()
+
+            // Pindah ke Login
+            val intent = Intent(requireActivity(), AuthActivity::class.java)
+
+            // Flag Sakti: Hapus semua tumpukan history activity
+            // Jadi kalau user tekan back, aplikasi keluar, bukan balik ke profile
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
         }
     }
 }
