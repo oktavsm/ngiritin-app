@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,17 +14,15 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- HEADER -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:layout_marginBottom="24dp"/>
 
-        <!-- FOTO PROFIL -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,29 +43,28 @@
                     android:id="@+id/ivProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars"/>
+                    android:background="#E0E0E0"/>
             </androidx.cardview.widget.CardView>
 
-            <ImageButton
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:background="@drawable/bg_camera_circle_gray"
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_camera"
-                android:padding="5dp"
-                android:clickable="true"
-                android:focusable="true"
+                android:background="@drawable/bg_circle_blue"
+                android:padding="6dp"
+                app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/cvProfileContainer"
                 app:layout_constraintEnd_toEndOf="@id/cvProfileContainer"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- ITEM 1: NAME -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card_input_profile"
+            android:background="@drawable/bg_card_light_blue"
             android:padding="16dp"
             android:layout_marginBottom="16dp">
 
@@ -75,7 +73,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_profile"
-                app:tint="#007AFF"
+                app:tint="@color/primary_blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -98,12 +96,13 @@
                     android:textColor="#808080"/>
 
                 <TextView
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MuelSam"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <TextView
@@ -111,30 +110,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
-                android:textColor="#333333"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- ITEM 2: EMAIL -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card_input_profile"
+            android:background="@drawable/bg_card_light_blue"
             android:padding="16dp"
             android:layout_marginBottom="16dp">
 
             <ImageView
                 android:id="@+id/icEmail"
-                android:layout_width="22dp"
-                android:layout_height="19dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_email"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#007AFF" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/primary_blue" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -153,6 +150,7 @@
                     android:textColor="#808080"/>
 
                 <TextView
+                    android:id="@+id/tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="masmuel@ub.gantenk"
@@ -160,22 +158,19 @@
                     android:maxLines="1"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- ITEM 3: PASSWORD (INI YANG KITA PERBAIKI) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card_input_profile"
+            android:background="@drawable/bg_card_light_blue"
             android:padding="16dp"
+            android:animateLayoutChanges="true"
             android:layout_marginBottom="24dp">
 
-            <!-- MODE 1: TAMPILAN BIASA (COLLAPSED) -->
-            <!-- ID ini yang dicari sama Kotlin -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutPasswordCollapsed"
                 android:layout_width="match_parent"
@@ -189,7 +184,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#006FFD"
+                    app:tint="@color/primary_blue"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -214,10 +209,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=". . . . . . ."
+                        android:text="..............."
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"/>
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <TextView
@@ -225,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change"
-                    android:textColor="#333333"
+                    android:textColor="@color/black"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -233,8 +228,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- MODE 2: FORM GANTI PASSWORD (EXPANDED) -->
-            <!-- ID ini juga dicari sama Kotlin, tapi belum ada sebelumnya -->
             <LinearLayout
                 android:id="@+id/layoutPasswordExpanded"
                 android:layout_width="match_parent"
@@ -249,11 +242,10 @@
                     android:layout_height="wrap_content"
                     android:text="Change Password"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- Old Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -266,18 +258,12 @@
                     android:id="@+id/etOldPass"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@drawable/bg_input_white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_lock"
-                    android:drawablePadding="12dp"
-                    android:drawableTint="#808080"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingHorizontal="12dp"
                     android:hint="............"
                     android:inputType="textPassword"
-                    android:textSize="14sp"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- New Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -290,18 +276,12 @@
                     android:id="@+id/etNewPass"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@drawable/bg_input_white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_key"
-                    android:drawablePadding="12dp"
-                    android:drawableTint="#808080"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingHorizontal="12dp"
                     android:hint="New password"
                     android:inputType="textPassword"
-                    android:textSize="14sp"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- Confirm Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -314,56 +294,46 @@
                     android:id="@+id/etConfirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@drawable/bg_input_white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:drawableStart="@drawable/ic_key"
-                    android:drawablePadding="12dp"
-                    android:drawableTint="#808080"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingHorizontal="12dp"
                     android:hint="Confirm new password"
                     android:inputType="textPassword"
-                    android:textSize="14sp"
                     android:layout_marginBottom="24dp"/>
 
-                <!-- Buttons -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCancelPass"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
                         android:text="Cancel"
-                        android:textColor="#007AFF"
-                        android:textAllCaps="false"
-                        android:background="@drawable/bg_btn_outline_blue"/>
+                        android:textColor="@color/primary_blue"
+                        app:strokeColor="@color/primary_blue"
+                        android:layout_marginEnd="8dp"/>
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSavePass"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginStart="8dp"
                         android:text="Save"
-                        android:textColor="#FFFFFF"
-                        android:textAllCaps="false"
-                        android:background="@drawable/bg_btn_primary_blue"/>
+                        app:backgroundTint="@color/primary_blue"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
 
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- BUTTON SETTING -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card_input_profile"
+            android:background="@drawable/bg_card_light_blue"
             android:gravity="center"
             android:padding="16dp"
             android:layout_marginBottom="16dp">
@@ -372,7 +342,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_setting"
-                app:tint="#007AFF"
+                app:tint="@color/primary_blue"
                 android:layout_marginEnd="8dp"/>
 
             <TextView
@@ -380,10 +350,9 @@
                 android:layout_height="wrap_content"
                 android:text="Setting"
                 android:textSize="16sp"
-                android:textColor="#333333"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
-        <!-- BUTTON LOGOUT -->
         <LinearLayout
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
@@ -395,8 +364,8 @@
             android:focusable="true">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:src="@drawable/ic_logout"
                 app:tint="#FF3B30"
                 android:layout_marginEnd="8dp"/>
@@ -411,4 +380,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -1,4 +1,4 @@
-package com.ngiritin.app.ui.main.profile // <-- Pastiin ini sesuai nama package lu sendiri
+package com.ngiritin.app.ui.profile // <-- Pastiin ini sesuai nama package lu sendiri
 
 import android.os.Bundle
 import android.view.LayoutInflater

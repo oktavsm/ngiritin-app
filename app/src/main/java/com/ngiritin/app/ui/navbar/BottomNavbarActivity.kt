@@ -8,7 +8,7 @@ import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import com.ngiritin.app.R
 import com.ngiritin.app.ui.history.HistoryFragment
 import com.ngiritin.app.ui.home.HomeFragment
-import com.ngiritin.app.ui.main.profile.ProfileFragment
+import com.ngiritin.app.ui.profile.ProfileFragment
 import com.ngiritin.app.ui.new_transaction.AddOptionBottomSheet
 import com.ngiritin.app.ui.new_transaction.AutomaticTransactionFragment
 import com.ngiritin.app.ui.new_transaction.ManualTransactionFragment

@@ -10,6 +10,7 @@ import com.ngiritin.app.R
 import com.ngiritin.app.data.model.HistoryItem
 import com.ngiritin.app.data.model.Transaction
 
+
 class HistoryAdapter(
     private val items: List<HistoryItem>,
     private val onEditClick: (Transaction) -> Unit
