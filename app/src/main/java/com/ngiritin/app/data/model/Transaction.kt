@@ -1,5 +1,6 @@
 package com.ngiritin.app.data.model
 
+
 data class Transaction(
     val title: String,
     val category: String,
