@@ -14,7 +14,6 @@ import com.ngiritin.app.ui.history.onclick.EditTransactionBottomSheet
 import com.ngiritin.app.ui.history.onclick.FilterBottomSheet
 
 class HistoryFragment : Fragment() {
-
     private lateinit var viewModel: HistoryViewModel
     private lateinit var rvTransactions: RecyclerView
 
@@ -32,18 +31,13 @@ class HistoryFragment : Fragment() {
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(context)
 
-        // Di dalam observe ViewModel
         viewModel.transactionList.observe(viewLifecycleOwner) { items ->
-
-            // Masukkan lambda function di parameter kedua
             val adapter = HistoryAdapter(items) { transaction ->
-                // KODE YANG DIJALANKAN SAAT TOMBOL EDIT DI KLIK:
                 val editSheet = EditTransactionBottomSheet()
 
-
-                 val bundle = Bundle()
-                 bundle.putString("TITLE", transaction.title)
-                 editSheet.arguments = bundle
+                val bundle = Bundle()
+                bundle.putString("TITLE", transaction.title)
+                editSheet.arguments = bundle
 
                 editSheet.show(parentFragmentManager, "EditTransaction")
             }
@@ -51,13 +45,10 @@ class HistoryFragment : Fragment() {
             rvTransactions.adapter = adapter
         }
 
-        // Di dalam onViewCreated HistoryFragment
         val btnFilter = view.findViewById<ImageView>(R.id.ivFilter)
 
         btnFilter.setOnClickListener {
             val filterBottomSheet = FilterBottomSheet()
-
-
             filterBottomSheet.show(parentFragmentManager, "FilterBottomSheet")
         }
     }

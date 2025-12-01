@@ -2,59 +2,88 @@ package com.ngiritin.app.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.ngiritin.app.R
-
-
-
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.ngiritin.app.R
 import com.ngiritin.app.databinding.FragmentRegisterBinding
-import com.ngiritin.app.ui.main.MainActivity
+import com.ngiritin.app.ui.navbar.BottomNavbarActivity
+import com.ngiritin.app.utils.Result
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private lateinit var binding: FragmentRegisterBinding
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterBinding.bind(view)
 
-        // 1. Tombol Back Manual (Teks "Back to login")
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupListeners() {
         binding.tvBackToLogin.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        // 2. Tombol Sign Up
         binding.btnSignUp.setOnClickListener {
-            val name = binding.tilName.editText?.text.toString()
-            val email = binding.tilEmail.editText?.text.toString()
-            val pass = binding.tilPassword.editText?.text.toString()
-            val confirmPass = binding.tilConfirmPassword.editText?.text.toString()
+            val name = binding.tilName.editText?.text.toString().trim()
+            val email = binding.tilEmail.editText?.text.toString().trim()
+            val pass = binding.tilPassword.editText?.text.toString().trim()
+            val confirmPass = binding.tilConfirmPassword.editText?.text.toString().trim()
 
             if (name.isEmpty() || email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(requireContext(), "Mohon lengkapi semua data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (pass != confirmPass) {
-                Toast.makeText(requireContext(), "Password tidak cocok!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Simulasi Sukses
-            Toast.makeText(requireContext(), "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show()
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            if (pass.length < 6) {
+                Toast.makeText(requireContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.register(name, email, pass)
         }
 
-        // 3. Sosmed
-        val notAvailableAction = {
-            Toast.makeText(requireContext(), "Fitur ini belum tersedia di versi Demo", Toast.LENGTH_SHORT).show()
+        binding.btnGoogle.setOnClickListener {
+            Toast.makeText(requireContext(), "Google Sign-Up coming soon", Toast.LENGTH_SHORT).show()
         }
-        binding.btnGoogle.setOnClickListener { notAvailableAction() }
+    }
+
+    private fun observeViewModel() {
+        viewModel.authResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.btnSignUp.isEnabled = false
+                    binding.btnSignUp.text = "Loading..."
+                }
+                is Result.Success -> {
+                    binding.btnSignUp.isEnabled = true
+                    binding.btnSignUp.text = "Sign Up"
+                    Toast.makeText(requireContext(), "Registration Successful! Welcome, ${result.data.displayName}", Toast.LENGTH_LONG).show()
+                    navigateToHome()
+                }
+                is Result.Error -> {
+                    binding.btnSignUp.isEnabled = true
+                    binding.btnSignUp.text = "Sign Up"
+                    Toast.makeText(requireContext(), "Registration Failed: ${result.error}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(requireActivity(), BottomNavbarActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
     }
 }

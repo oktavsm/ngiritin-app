@@ -4,15 +4,15 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import com.ngiritin.app.R
 import com.ngiritin.app.ui.history.HistoryFragment
 import com.ngiritin.app.ui.home.HomeFragment
 import com.ngiritin.app.ui.main.profile.ProfileFragment
-import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
 import com.ngiritin.app.ui.new_transaction.AddOptionBottomSheet
 import com.ngiritin.app.ui.new_transaction.AutomaticTransactionFragment
 import com.ngiritin.app.ui.new_transaction.ManualTransactionFragment
-import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
+import com.ngiritin.app.ui.navbar.pageDummy.ForYouDummyFragment
 
 class BottomNavbarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
