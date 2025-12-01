@@ -40,7 +40,7 @@ class HistoryFragment : Fragment() {
                 // KODE YANG DIJALANKAN SAAT TOMBOL EDIT DI KLIK:
                 val editSheet = EditTransactionBottomSheet()
 
-                // (Opsional) Kirim data transaksi ke sheet biar form-nya keisi
+
                  val bundle = Bundle()
                  bundle.putString("TITLE", transaction.title)
                  editSheet.arguments = bundle
@@ -57,7 +57,7 @@ class HistoryFragment : Fragment() {
         btnFilter.setOnClickListener {
             val filterBottomSheet = FilterBottomSheet()
 
-            // Tampilkan! "parentFragmentManager" adalah kuncinya
+
             filterBottomSheet.show(parentFragmentManager, "FilterBottomSheet")
         }
     }

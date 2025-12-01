@@ -21,7 +21,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
 
-        // 1. Logic Tombol Login
+
         binding.btnLogin.setOnClickListener {
             val email = binding.tilEmail.editText?.text.toString().trim()
             val password = binding.tilPassword.editText?.text.toString().trim()
@@ -30,7 +30,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 return@setOnClickListener
             }
 
-            // Hardcode Demo Login
+
             if (email == "admin" && password == "admin") {
                 val intent = Intent(requireActivity(), BottomNavbarActivity::class.java)
                 startActivity(intent)
@@ -55,7 +55,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 .commit()
         }
 
-        // 3. Fitur Belum Tersedia
+
         val notAvailableAction = {
             Toast.makeText(requireContext(), "Fitur ini belum tersedia di versi Demo", Toast.LENGTH_SHORT).show()
         }

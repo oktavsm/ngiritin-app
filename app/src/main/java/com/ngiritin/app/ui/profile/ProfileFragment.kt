@@ -48,7 +48,6 @@ class ProfileFragment : Fragment() {
         val etNewPass = view.findViewById<EditText>(R.id.etNewPass)
         val etConfirmPass = view.findViewById<EditText>(R.id.etConfirmPass)
 
-        // 1. Tombol Change diklik -> Buka Form
         tvChange.setOnClickListener {
             layoutCollapsed.visibility = View.GONE
             layoutExpanded.visibility = View.VISIBLE
