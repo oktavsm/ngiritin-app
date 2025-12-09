@@ -1,4 +1,4 @@
-package com.ngiritin.app.ui.settings
+package com.ngiritin.app.ui.profile.onclick
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,33 +25,27 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Setup Expandable Category
         setupExpandableCard(
             header = view.findViewById(R.id.headerCategories),
             content = view.findViewById(R.id.contentCategories),
             arrow = view.findViewById(R.id.arrowCategories)
         )
 
-        // Setup Expandable Wallet
         setupExpandableCard(
             header = view.findViewById(R.id.headerWallets),
             content = view.findViewById(R.id.contentWallets),
             arrow = view.findViewById(R.id.arrowWallets)
         )
 
-        // Setup Time Picker
         setupTimePicker(view)
     }
 
-    // Fungsi sakti buat bikin card bisa expand/collapse + animasi panah
     private fun setupExpandableCard(header: LinearLayout, content: LinearLayout, arrow: ImageView) {
         header.setOnClickListener {
             if (content.visibility == View.VISIBLE) {
-                // COLLAPSE
                 content.visibility = View.GONE
                 arrow.animate().rotation(0f).setDuration(200).start() // Balik ke kanan
             } else {
-                // EXPAND
                 content.visibility = View.VISIBLE
                 arrow.animate().rotation(90f).setDuration(200).start() // Putar ke bawah
             }
@@ -72,7 +66,6 @@ class SettingsFragment : Fragment() {
             picker.show(parentFragmentManager, "ngiritin_time_picker")
 
             picker.addOnPositiveButtonClickListener {
-                // Format jadi HH:mm (contoh: 08:05)
                 val hour = String.format("%02d", picker.hour)
                 val minute = String.format("%02d", picker.minute)
                 tvTime.text = "$hour : $minute"

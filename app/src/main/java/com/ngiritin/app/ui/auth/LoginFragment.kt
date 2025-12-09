@@ -36,7 +36,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun setupGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) // Ambil dari strings.xml
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
@@ -94,7 +94,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             Toast.makeText(requireContext(), "Feature not available yet", Toast.LENGTH_SHORT).show()
         }
 
-        // 3. Tombol Login Google
         binding.btnGoogle.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             googleSignInLauncher.launch(signInIntent)
